@@ -141,3 +141,7 @@ The app will be available at `http://localhost:5173`.
 | GET | `/api/emails/:category` | Fetch emails by category |
 | POST | `/api/emails/:id/recategorize` | Re-categorize an email (trains ML) |
 | POST | `/api/chat` | Send message to AI chatbot |
+
+#  Author
+
+- [Nalluri Sanjay](www.linkedin.com/in/sanjaynalluri2405)
