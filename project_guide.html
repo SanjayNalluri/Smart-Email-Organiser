@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Email Organizer - Project Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-color: #f8fafc;
+            --surface-color: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: var(--surface-color);
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), #3b82f6);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.75rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
+
+        header p {
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.95);
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .content {
+            padding: 3rem;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            color: var(--text-primary);
+            margin-top: 3rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border-color);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h2::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 24px;
+            background-color: var(--primary);
+            border-radius: 3px;
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            color: #334155;
+            font-size: 1rem;
+        }
+
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            color: #334155;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        code {
+            background-color: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', Consolas, monospace;
+            font-size: 0.875em;
+            color: #db2777;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #f8fafc;
+            padding: 1.25rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            border: 1px solid #334155;
+            font-size: 0.9rem;
+            line-height: 1.65;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: inherit;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: #f8fafc;
+            font-weight: 600;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-card {
+            background: var(--surface-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-color: #cbd5e1;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-size: 1.125rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            font-size: 0.875rem;
+            background-color: var(--bg-color);
+        }
+
+        .workflow-step {
+            display: flex;
+            margin-bottom: 1.5rem;
+            background: #f8fafc;
+            padding: 1.25rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 1.25rem;
+        }
+
+        .step-content h3 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            margin-bottom: 0;
+        }
+
+        .method {
+            display: inline-block;
+            padding: 0.15rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', Consolas, monospace;
+            letter-spacing: 0.03em;
+        }
+
+        .method.get {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .method.post {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+
+        .footer p {
+            color: #64748b;
+        }
+        
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .content { padding: 1.5rem; }
+            header { padding: 2.5rem 1rem; }
+            header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Smart Email Organizer</h1>
+            <p>An AI-powered email management system built for university students. It connects to your Gmail inbox via OAuth 2.0, fetches recent emails, and automatically classifies them into meaningful categories using a hybrid ML approach.</p>
+        </header>
+
+        <div class="content">
+            <h2>Key Features</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <div class="feature-title">Gmail Integration</div>
+                    <p>Secure OAuth 2.0 authentication to read emails with strict read-only access ensuring your privacy.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <div class="feature-title">AI Chatbot Assistant</div>
+                    <p>Natural language chatbot powered by Groq (Llama 3.3) that summarizes emails, finds deadlines, and navigates categories.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <div class="feature-title">Adaptive Learning</div>
+                    <p>Users can correct misclassified emails, and the underlying ML model learns from these corrections to improve over time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <div class="feature-title">Event Calendar</div>
+                    <p>Visual calendar widget showing upcoming events directly extracted from your inbox contents.</p>
+                </div>
+            </div>
+
+            <h3>Automatic Email Classification Categories</h3>
+            <ul>
+                <li><strong>📅 Events</strong> &mdash; Campus fests, workshops, cultural activities</li>
+                <li><strong>📚 Academics</strong> &mdash; Assignments, notices, scholarships, placements</li>
+                <li><strong>💻 Hackathons</strong> &mdash; Coding competitions, hackathons, contests</li>
+                <li><strong>👤 Personal</strong> &mdash; Friend messages, LinkedIn connections, personal notifications</li>
+                <li><strong>🗑️ Spam</strong> &mdash; Promotions, newsletters, automated notifications</li>
+            </ul>
+
+            <h2>How the Classifier Works</h2>
+            <p>The system utilizes a <strong>hybrid approach</strong> to achieve robust classification accuracy:</p>
+            
+            <div class="workflow-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Keyword Scoring Engine (Primary)</h3>
+                    <p>Each category features weighted keyword dictionaries. Email subjects and snippets are scored against these dictionaries. Strong matches receive a weight of 3, while moderate matches receive a weight of 1.</p>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Naive Bayes Classifier (Secondary)</h3>
+                    <p>A Node.js <code>natural</code> library Bayes classifier trained on seed data behaves as a tiebreaker when keyword scores fall below thresholds.</p>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Sender-Based Rules</h3>
+                    <p>Known promotional senders are flagged as Spam. Educational senders (e.g., <code>.ac.in</code>, <code>.edu</code> domains) automatically receive an Academics priority boost.</p>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>User Feedback Loop</h3>
+                    <p>When users accurately re-categorize emails, the system retrains the Bayes model and saves sender-level overrides for consistent future sorting.</p>
+                </div>
+            </div>
+
+            <h2>Tech Stack</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Layer</th>
+                        <th>Technology</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Frontend</strong></td>
+                        <td>React 18, Vite, React Router</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Backend</strong></td>
+                        <td>Node.js, Express.js</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Authentication</strong></td>
+                        <td>Google OAuth 2.0 (googleapis)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ML Classification</strong></td>
+                        <td><code>natural</code> (Naive Bayes), custom keyword-scoring engine</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AI Chatbot</strong></td>
+                        <td>Groq API (Llama 3.3 70B)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Styling</strong></td>
+                        <td>Vanilla CSS with CSS custom properties</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Project Structure</h2>
+            <p>The application is divided into a <strong>React frontend (client)</strong> and a <strong>Node.js backend (server)</strong>. Here is the detailed modular architecture:</p>
+            <pre><code>smart-email-organizer/
+├── client/                       # React frontend (Vite)
+│   ├── src/
+│   │   ├── components/           # Reusable UI components
+│   │   │   ├── CategoryCard.jsx  # Displays individual email category stats
+│   │   │   ├── ChatBot.jsx       # AI Assistant interface using Groq
+│   │   │   ├── EmailDetail.jsx   # Detailed view for reading specific emails
+│   │   │   ├── EmailList.jsx     # List view of emails filtered by category
+│   │   │   ├── EventCalendar.jsx # Calendar widget for upcoming events
+│   │   │   └── Sidebar.jsx       # Navigation and folder selection menu
+│   │   ├── pages/                # Main Route Pages
+│   │   │   ├── Dashboard.jsx     # Primary user interface after login
+│   │   │   └── Login.jsx         # Public landing and OAuth login page
+│   │   ├── services/             # API client functions
+│   │   │   └── api.js            # Main Axios configuration and endpoints
+│   │   ├── App.jsx               # Root component with layout and routing
+│   │   ├── main.jsx              # React DOM rendering entry point
+│   │   └── index.css             # Global visual styles and tokens
+│   └── package.json              # Frontend dependency manifest
+├── server/                       # Node.js backend environment
+│   ├── config/                   # Configuration and credentials setup
+│   ├── routes/                   # Express route handler definitions
+│   │   ├── auth.js               # OAuth2 authentication flows
+│   │   ├── chat.js               # API endpoints for AI chatbot
+│   │   └── emails.js             # Fetching and classifying endpoints
+│   ├── services/                 # Core business logic integration
+│   │   ├── classifierService.js  # Hybrid categorization engine (ML + Keywords)
+│   │   └── gmailService.js       # Interfacing with Google Gmail API
+│   ├── models/                   # Local data models/schemas
+│   ├── index.js                  # Main Express server entry point
+│   ├── .env                      # Secret environment variables
+│   └── package.json              # Backend dependency manifest
+└── README.md                     # Core project documentation</code></pre>
+
+            <h2>Setup & Installation</h2>
+
+            <h3>Prerequisites</h3>
+            <ul>
+                <li>Node.js 18+ installed on your system</li>
+                <li>Google Cloud Console project with Gmail API enabled</li>
+                <li>Groq API key for AI Chatbot functionality</li>
+            </ul>
+
+            <h3>1. Clone and install dependencies</h3>
+            <pre><code>cd smart-email-organizer
+npm run install:all</code></pre>
+
+            <h3>2. Configure environment variables</h3>
+            <p>Create a <code>server/.env</code> file with the following configuration:</p>
+            <pre><code>GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+GOOGLE_REDIRECT_URI=http://localhost:3001/auth/callback
+GROQ_API_KEY=your_groq_api_key
+SESSION_SECRET=your_session_secret
+PORT=3001
+CLIENT_URL=http://localhost:5173</code></pre>
+
+            <h3>3. Run the application</h3>
+            <pre><code># Terminal 1 — Start the backend
+npm run dev:server
+
+# Terminal 2 — Start the frontend
+npm run dev:client</code></pre>
+            <p>The application will now be securely available at <code>http://localhost:5173</code>.</p>
+            
+            <h2>API Architecture Reference</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Endpoint</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="method get">GET</span></td>
+                        <td><code>/auth/google</code></td>
+                        <td>Initiate Google OAuth flow</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method get">GET</span></td>
+                        <td><code>/auth/callback</code></td>
+                        <td>OAuth callback handler</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method get">GET</span></td>
+                        <td><code>/auth/user</code></td>
+                        <td>Fetch the authenticated user context</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method post">POST</span></td>
+                        <td><code>/auth/logout</code></td>
+                        <td>Terminate active session cleanly</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method get">GET</span></td>
+                        <td><code>/api/emails</code></td>
+                        <td>Process and classify all recent inbox items</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method post">POST</span></td>
+                        <td><code>/api/emails/:id/recategorize</code></td>
+                        <td>Trigger ML retraining for category adjustments</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method post">POST</span></td>
+                        <td><code>/api/chat</code></td>
+                        <td>Interact with Context-Aware AI Assistant</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <p>Smart Email Organizer &copy; 2026. Designed for streamlining student email communications.</p>
+        </div>
+    </div>
+</body>
+</html>
